@@ -2,8 +2,10 @@
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
-# Secrets
+# Misc
 four/data/secrets.json
+four/data/tl.json
+devenv.*
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

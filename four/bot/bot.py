@@ -1,25 +1,30 @@
 import os
 import discord
-from four.bot.helpers import get_json
-
-
-class FourBot(discord.Client):
-
-    def __init__(self):
-        super().__init__()
-    
-    async def on_ready(self):
-        print(f"{self.user} has connected.")
-    
-
-
+from discord.ext import commands
+from four.bot.helpers import get_secrets
 
 
 def main():
-    secrets = get_json("four/data/secrets.json")
-    discord_token = secrets["DISCORD_TOKEN"]
-    pandascore_token = secrets["PANDASCORE_TOKEN"]
-    bot = FourBot()
+    discord_token, pandascore_token = get_secrets("four/data/secrets.json")
+    bot = commands.Bot(command_prefix='4')
+
+    @bot.event
+    async def on_ready():
+        print("Bot is online")
+
+    @bot.command()
+    async def load(ctx, extension):
+        bot.load_extension(f"four.bot.cogs.{extension}")
+
+    @bot.command()
+    async def unload(ctx, extension):
+        bot.unload_extension(f"four.bot.cogs.{extension}")
+
+    for filename in os.listdir("four/bot/cogs"):
+        if filename.endswith(".py"):
+            bot.load_extension(f"four.bot.cogs.{filename[:-3]}")
+    
+
     bot.run(discord_token)
 
 if __name__ == "__main__":
