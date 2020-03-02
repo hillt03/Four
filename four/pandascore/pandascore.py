@@ -17,14 +17,6 @@ class PandaScoreHelper():
         return str(time)
         
 
-
     def get_upcoming_matches(self, amount_of_matches=8):
         params = {"token": self.api_token, "per_page": amount_of_matches}
         return get_json_from_api("https://api.pandascore.co/csgo/matches/upcoming", params=params)
-
-
-def main():
-    pass
-
-if __name__ == "__main__":
-    main()

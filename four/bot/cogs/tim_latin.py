@@ -7,7 +7,7 @@ class TimLatin(commands.Cog):
         self.bot = bot
         self.translator = TimlatinTranslator("four/data/tl.json")
     
-    @commands.command()
+    @commands.command(help="Translates text to Timlatin")
     async def t(self, ctx):
         user_input = ctx.message.content[3:]
         if user_input:

@@ -10,6 +10,8 @@ def get_json(filepath):
 
 def get_json_from_api(json_url, params=None):
     req = requests.get(json_url, params=params) if params else requests.get(json_url)
-    if req.status_code != 200:
-        return None
-    return req.json()
+    return req.json() if req.ok else None
+
+def get_html(url):
+    req = requests.get(url)
+    return req.text() if req.ok else None
