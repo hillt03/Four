@@ -8,10 +8,10 @@ from four.pandascore.pandascore import PandaScoreHelper
 class CS(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.api_token = get_json("four/data/secrets.json")["PANDASCORE_TOKEN"]
-        self.ps = PandaScoreHelper(self.api_token)
+        api_token = get_json("four/data/secrets.json")["PANDASCORE_TOKEN"]
+        self.ps = PandaScoreHelper(api_token)
     
-    @commands.command(help="List upcoming CSGO matches")
+    @commands.command(help="Lists upcoming CSGO matches")
     async def cs(self, ctx):
         matches = self.ps.get_upcoming_matches()
         if not matches:

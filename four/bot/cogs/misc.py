@@ -8,9 +8,9 @@ class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.command()
+    @commands.command(help="Gives a pong")
     async def ping(self, ctx):
-        await ctx.send("Pong!")
+        await ctx.send(f"Pong! :ping_pong: {int(self.bot.latency*1000)}ms")
     
     @commands.command(help="Lists astronauts currently in space")
     async def cosmos(self, ctx):
@@ -27,7 +27,7 @@ class Misc(commands.Cog):
             counter += 1
         await ctx.send(embed=embed)
 
-    @commands.command(help="Count down from 4")
+    @commands.command(help="Counts down from 4")
     async def count(self, ctx):
         message = await ctx.send(":stop_sign: Four :stop_sign:")
         await asyncio.sleep(1)
