@@ -22,6 +22,10 @@ class Misc(commands.Cog):
         await message.edit(content=":stop_sign: One :stop_sign:")
         await asyncio.sleep(1)
         await message.edit(content=":green_circle: :metal: :green_circle:  GO!!!! :green_circle:  :metal: :green_circle: ")
+    
+    @commands.command(hidden=True)
+    async def getid(self, ctx):
+        await ctx.send(ctx.message.author.id)
         
 
 

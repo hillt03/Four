@@ -12,13 +12,22 @@ def main():
     async def on_ready():
         print("Bot is online")
 
-    @bot.command()
+    @bot.command(hidden=True)
     async def load(ctx, extension):
-        bot.load_extension(f"four.bot.cogs.{extension}")
+        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
+            bot.load_extension(f"four.bot.cogs.{extension}")
 
-    @bot.command()
+    @bot.command(hidden=True)
     async def unload(ctx, extension):
-        bot.unload_extension(f"four.bot.cogs.{extension}")
+        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
+            bot.unload_extension(f"four.bot.cogs.{extension}")
+
+    @bot.command(hidden=True)
+    async def rc(ctx, extension):
+        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
+            await unload(ctx, extension)
+            await load(ctx, extension)
+            print(f"{extension} reloaded.")
 
     for filename in os.listdir("four/bot/cogs"):
         if filename.endswith(".py"):
