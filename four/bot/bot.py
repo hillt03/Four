@@ -8,27 +8,31 @@ from four.bot.helpers import get_value_from_secrets
 def main():
     discord_token = get_value_from_secrets("DISCORD_TOKEN")
     bot = commands.Bot(command_prefix='4')
+    my_id = get_value_from_secrets("MY_ID")
+
+    def author_is_me(ctx):
+        return ctx.message.author.id == my_id
 
     @bot.event
     async def on_ready():
         print("Bot is online")
 
     @bot.command(hidden=True)
+    @commands.check(author_is_me)
     async def load(ctx, extension):
-        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
-            bot.load_extension(f"four.bot.cogs.{extension}")
+        bot.load_extension(f"four.bot.cogs.{extension}")
 
     @bot.command(hidden=True)
+    @commands.check(author_is_me)
     async def unload(ctx, extension):
-        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
-            bot.unload_extension(f"four.bot.cogs.{extension}")
+        bot.unload_extension(f"four.bot.cogs.{extension}")
 
     @bot.command(hidden=True)
+    @commands.check(author_is_me)
     async def rc(ctx, extension):
-        if ctx.message.author.id == get_value_from_secrets("MY_ID"):
-            await unload(ctx, extension)
-            await load(ctx, extension)
-            print(f"{extension} reloaded.")
+        await unload(ctx, extension)
+        await load(ctx, extension)
+        print(f"{extension} reloaded.")
 
     for filename in os.listdir("four/bot/cogs"):
         if filename.endswith(".py"):

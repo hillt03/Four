@@ -11,7 +11,7 @@ class Misc(commands.Cog):
     async def ping(self, ctx):
         await ctx.send(f":ping_pong: Pong! :ping_pong: {int(self.bot.latency*1000)}ms :ping_pong:")
     
-    @commands.command(help="Counts down from 4")
+    @commands.command(help="Counts down from 4", aliases=["c"])
     async def count(self, ctx):
         message = await ctx.send(":stop_sign: :stop_sign: :stop_sign: :stop_sign: :four: :stop_sign: :stop_sign: :stop_sign: :stop_sign:")
         await asyncio.sleep(1)
