@@ -11,5 +11,5 @@ class TestBotHelpers(unittest.TestCase):
                     "SECRET_TEST1": "abc",
                     "SECRET_TEST2": "123",
                     }
-        self.assertEqual(four.bot.helpers.get_json("test_json.json"), expected)
+        self.assertEqual(four.helpers.get_json("test_json.json"), expected)
 

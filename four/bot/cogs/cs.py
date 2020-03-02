@@ -1,14 +1,15 @@
 import discord
 import asyncio
 from discord.ext import commands
-from four.pandascore.pandascore import PandaScoreWrapper
 from four.bot.helpers import get_json
+from four.pandascore.pandascore import PandaScoreHelper
+
 
 class CS(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.api_token = get_json("four/data/secrets.json")["PANDASCORE_TOKEN"]
-        self.ps = PandaScoreWrapper(self.api_token)
+        self.ps = PandaScoreHelper(self.api_token)
     
     @commands.command(help="List upcoming CSGO matches")
     async def cs(self, ctx):
@@ -28,9 +29,8 @@ class CS(commands.Cog):
             league = match["league"]["name"]
             begin_at = self.ps.get_formatted_time(match["begin_at"])
             
-            upcoming_match = ""
             if live_url:
-                upcoming_match += f"[name]({live_url})"
+                upcoming_match = f"[{name}]({live_url})"
             else:
                 upcoming_match = name
             embed.add_field(name="Match " + str(counter), value=upcoming_match, inline=True)

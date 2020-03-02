@@ -1,9 +1,10 @@
 import requests
 from datetime import datetime, timedelta
+from four.bot.helpers import get_json_from_api
 
-class PandaScoreWrapper():
+class PandaScoreHelper():
     """
-    Wrapper for the PandaScore API.
+    Helper for the PandaScore API.
     """
     def __init__(self, api_token):
         self.api_token = api_token
@@ -19,12 +20,7 @@ class PandaScoreWrapper():
 
     def get_upcoming_matches(self, amount_of_matches=8):
         params = {"token": self.api_token, "per_page": amount_of_matches}
-        matches = requests.get("https://api.pandascore.co/csgo/matches/upcoming", params=params)
-        if matches.status_code != 200:
-            return None
-        return matches.json()
-
-
+        return get_json_from_api("https://api.pandascore.co/csgo/matches/upcoming", params=params)
 
 
 def main():

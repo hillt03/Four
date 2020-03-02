@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import requests
 import asyncio
+from four.bot.helpers import get_json_from_api
 
 class Misc(commands.Cog):
     def __init__(self, bot):
@@ -13,11 +14,7 @@ class Misc(commands.Cog):
     
     @commands.command(help="Lists astronauts currently in space")
     async def cosmos(self, ctx):
-        astros = requests.get("http://api.open-notify.org/astros.json")
-        if astros.status_code != 200:
-            await ctx.send("Data unavailable.")
-        astros = astros.json()
-
+        astros = get_json_from_api("http://api.open-notify.org/astros.json")
         description = "There are currently " + str(astros["number"]) + " astronauts in space."
         embed = discord.Embed(title="Astronauts In Space", description=description, color=0xfff78c)
         embed.set_image(url="https://i.imgur.com/zReLsRn.png")
