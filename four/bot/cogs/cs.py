@@ -16,7 +16,6 @@ class CS(commands.Cog):
         if not matches:
             await ctx.send("No matches found.")
             return
-
         embed = discord.Embed(title="Upcoming CSGO Matches", description="Timezone: EST", color=0xfff78c)
         embed.set_image(url="https://i.imgur.com/i9OfSCF.png")
         embed.set_thumbnail(url="https://i.imgur.com/zX5VBbt.png")
@@ -26,15 +25,18 @@ class CS(commands.Cog):
             name = match["name"]
             status = match["status"]
             live_url = match["live_url"]
+            league = match["league"]["name"]
             begin_at = self.ps.get_formatted_time(match["begin_at"])
             
             upcoming_match = ""
             if live_url:
-                upcoming_match += f"[name]({live_url})\n"
+                upcoming_match += f"[name]({live_url})"
             else:
-                upcoming_match = name + "\n"
-            upcoming_match += f"{begin_at}\n"
-            embed.add_field(name="Match " + str(counter), value=upcoming_match, inline=False)
+                upcoming_match = name
+            embed.add_field(name="Match " + str(counter), value=upcoming_match, inline=True)
+            embed.add_field(name="Date/Time", value=begin_at, inline=True)
+            embed.add_field(name="League", value=league, inline=True)
+            
             counter += 1
 
         await ctx.send(embed=embed)

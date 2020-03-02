@@ -17,7 +17,7 @@ class PandaScoreWrapper():
         
 
 
-    def get_upcoming_matches(self, amount_of_matches=25):
+    def get_upcoming_matches(self, amount_of_matches=8):
         params = {"token": self.api_token, "per_page": amount_of_matches}
         matches = requests.get("https://api.pandascore.co/csgo/matches/upcoming", params=params)
         if matches.status_code != 200:
