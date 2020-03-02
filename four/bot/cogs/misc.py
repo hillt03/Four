@@ -13,15 +13,15 @@ class Misc(commands.Cog):
     
     @commands.command(help="Counts down from 4")
     async def count(self, ctx):
-        message = await ctx.send(":stop_sign: Four :stop_sign:")
+        message = await ctx.send(":stop_sign: :stop_sign: :stop_sign: :stop_sign: :four: :stop_sign: :stop_sign: :stop_sign: :stop_sign:")
         await asyncio.sleep(1)
-        await message.edit(content=":stop_sign: Three :stop_sign:")
+        await message.edit(content=":stop_sign: :stop_sign: :stop_sign: :stop_sign: :three: :stop_sign: :stop_sign: :stop_sign: :stop_sign:")
         await asyncio.sleep(1)
-        await message.edit(content=":stop_sign: Two :stop_sign:")
+        await message.edit(content=":yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle: :two: :yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle:")
         await asyncio.sleep(1)
-        await message.edit(content=":stop_sign: One :stop_sign:")
+        await message.edit(content=":yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle: :one: :yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle:")
         await asyncio.sleep(1)
-        await message.edit(content=":green_circle: :metal: :green_circle:  GO!!!! :green_circle:  :metal: :green_circle: ")
+        await message.edit(content=":green_circle: :green_circle: :metal: :green_circle: :green_circle: :regional_indicator_g: :regional_indicator_o: :green_circle: :green_circle:  :metal: :green_circle: :green_circle:")
     
     @commands.command(hidden=True)
     async def getid(self, ctx):
