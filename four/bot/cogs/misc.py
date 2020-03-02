@@ -30,7 +30,7 @@ class Misc(commands.Cog):
             counter += 1
         await ctx.send(embed=embed)
 
-    @commands.command()
+    @commands.command(help="Count down from 4")
     async def count(self, ctx):
         message = await ctx.send(":stop_sign: Four :stop_sign:")
         await asyncio.sleep(1)
