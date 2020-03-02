@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import requests
+import asyncio
 
 class Misc(commands.Cog):
     def __init__(self, bot):
@@ -28,6 +29,19 @@ class Misc(commands.Cog):
             embed.add_field(name="Astronaut " + str(counter), value=value, inline=False)
             counter += 1
         await ctx.send(embed=embed)
+
+    @commands.command()
+    async def count(self, ctx):
+        message = await ctx.send(":stop_sign: Four :stop_sign:")
+        await asyncio.sleep(1)
+        await message.edit(content=":stop_sign: Three :stop_sign:")
+        await asyncio.sleep(1)
+        await message.edit(content=":stop_sign: Two :stop_sign:")
+        await asyncio.sleep(1)
+        await message.edit(content=":stop_sign: One :stop_sign:")
+        await asyncio.sleep(1)
+        await message.edit(content=":green_circle: :metal: :green_circle:  GO!!!! :green_circle:  :metal: :green_circle: ")
+        
 
 
 def setup(bot):
