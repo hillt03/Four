@@ -9,7 +9,7 @@ class Misc(commands.Cog):
     
     @commands.command(help="Gives a pong")
     async def ping(self, ctx):
-        await ctx.send(f"Pong! :ping_pong: {int(self.bot.latency*1000)}ms")
+        await ctx.send(f":ping_pong: Pong! :ping_pong: {int(self.bot.latency*1000)}ms :ping_pong:")
     
     @commands.command(help="Counts down from 4")
     async def count(self, ctx):
