@@ -17,20 +17,25 @@ class CS(commands.Cog):
             await ctx.send("No matches found.")
             return
 
-        embed = discord.Embed(title="Upcoming CSGO Matches", description="Timezone: EST", color=0x00ff00)
+        embed = discord.Embed(title="Upcoming CSGO Matches", description="Timezone: EST", color=0xfff78c)
+        embed.set_image(url="https://i.imgur.com/i9OfSCF.png")
+        embed.set_thumbnail(url="https://i.imgur.com/zX5VBbt.png")
+        embed.set_author(name="Four", icon_url="https://cdn.discordapp.com/avatars/681986669020184627/1dac2d38461df3015ab64481beb7318d.png?size=128")
+        counter = 1
         for match in matches:
-            
             name = match["name"]
             status = match["status"]
             live_url = match["live_url"]
             begin_at = self.ps.get_formatted_time(match["begin_at"])
-
             
-            upcoming_matches = ""
+            upcoming_match = ""
             if live_url:
-                upcoming_matches += f"Watch at: {live_url}\n"
-            upcoming_matches += f"{begin_at}\n"
-            embed.add_field(value=name, name=upcoming_matches, inline=True)
+                upcoming_match += f"[name]({live_url})\n"
+            else:
+                upcoming_match = name + "\n"
+            upcoming_match += f"{begin_at}\n"
+            embed.add_field(name="Match " + str(counter), value=upcoming_match, inline=False)
+            counter += 1
 
         await ctx.send(embed=embed)
 

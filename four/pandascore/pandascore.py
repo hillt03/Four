@@ -12,12 +12,12 @@ class PandaScoreWrapper():
     def get_formatted_time(self, input_time):
         if not input_time:
             return "No start time supplied."
-        time = (datetime.fromisoformat(input_time[:-1]) + timedelta(hours=7)).strftime("%m/%d/%Y %I:%M %p")
+        time = (datetime.fromisoformat(input_time[:-1]) + timedelta(hours=7)).strftime("%m/%d %I:%M %p")
         return str(time)
         
 
 
-    def get_upcoming_matches(self, amount_of_matches=20):
+    def get_upcoming_matches(self, amount_of_matches=25):
         params = {"token": self.api_token, "per_page": amount_of_matches}
         matches = requests.get("https://api.pandascore.co/csgo/matches/upcoming", params=params)
         if matches.status_code != 200:
