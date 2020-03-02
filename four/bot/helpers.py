@@ -8,6 +8,9 @@ def get_json(filepath):
     with open(filepath, "r") as f:
         return json.load(f)
 
+def get_value_from_secrets(value):
+    return get_json("four/data/secrets.json")[value]
+
 def get_json_from_api(json_url, params=None):
     req = requests.get(json_url, params=params) if params else requests.get(json_url)
     return req.json() if req.ok else None

@@ -1,11 +1,11 @@
 import os
 import discord
 from discord.ext import commands
-from four.bot.helpers import get_json
+from four.bot.helpers import get_value_from_secrets
 
 
 def main():
-    discord_token = get_json("four/data/secrets.json")["DISCORD_TOKEN"]
+    discord_token = get_value_from_secrets("DISCORD_TOKEN")
     bot = commands.Bot(command_prefix='4')
 
     @bot.event

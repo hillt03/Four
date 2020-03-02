@@ -1,14 +1,14 @@
 import discord
 import asyncio
 from discord.ext import commands
-from four.bot.helpers import get_json
+from four.bot.helpers import get_value_from_secrets
 from four.pandascore.pandascore import PandaScoreHelper
 
 
 class CS(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        api_token = get_json("four/data/secrets.json")["PANDASCORE_TOKEN"]
+        api_token = get_value_from_secrets("PANDASCORE_TOKEN")
         self.ps = PandaScoreHelper(api_token)
     
     @commands.command(help="Lists upcoming CSGO matches")
