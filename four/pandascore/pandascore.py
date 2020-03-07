@@ -13,10 +13,10 @@ class PandaScoreHelper():
     def get_formatted_time(self, input_time):
         if not input_time:
             return "No start time supplied."
-        time = (datetime.fromisoformat(input_time[:-1]) + timedelta(hours=7)).strftime("%m/%d %I:%M %p")
+        time = (datetime.fromisoformat(input_time[:-1]) + timedelta(hours=-5)).strftime("%#m/%#d %#I:%M %p")
         return str(time)
         
 
-    def get_upcoming_matches(self, amount_of_matches=8):
-        params = {"token": self.api_token, "per_page": amount_of_matches}
+    def get_upcoming_matches(self, page=1, amount_of_matches=16):
+        params = {"token": self.api_token, "page": page, "per_page": amount_of_matches}
         return get_json_from_api("https://api.pandascore.co/csgo/matches/upcoming", params=params)

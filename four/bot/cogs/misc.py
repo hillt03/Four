@@ -1,7 +1,7 @@
 import asyncio
 import discord
 from discord.ext import commands
-
+import random
 
 class Misc(commands.Cog):
     def __init__(self, bot):
@@ -21,11 +21,15 @@ class Misc(commands.Cog):
         await asyncio.sleep(1)
         await message.edit(content=":yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle: :one: :yellow_circle: :yellow_circle: :yellow_circle: :yellow_circle:")
         await asyncio.sleep(1)
-        await message.edit(content=":green_circle: :green_circle: :metal: :green_circle: :green_circle: :regional_indicator_g: :regional_indicator_o: :green_circle: :green_circle:  :metal: :green_circle: :green_circle:")
+        await message.edit(content=":green_circle: :green_circle: :green_circle: :green_circle:\n:green_circle: :regional_indicator_g: :regional_indicator_o: :green_circle:\n:green_circle: :green_circle: :green_circle: :green_circle:")
     
     @commands.command(hidden=True)
     async def getid(self, ctx):
         await ctx.send(ctx.message.author.id)
+    
+    @commands.command(help="Selects a random value from passed in arguments", aliases=['r'])
+    async def random(self, ctx, *args):
+        await ctx.send(random.choice(args))
         
 
 
